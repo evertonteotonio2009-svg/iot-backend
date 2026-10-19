@@ -1,10 +1,18 @@
+const prisma = require("../database/prisma")
+
 class Temperatura {
 
-    constructor(temperatura){
-
-this.temperatura = temperatura;
-this.data = new Date()
+    async criar(valor){
+        return await prisma.temperatura.create({
+            data:{
+                valor
+            }
+        })
     }
-}
 
-module.exports = Temperatura
+    async listar(){
+        return await prisma.temperatura.findMany()
+    } }
+
+
+module.exports = new Temperatura()
